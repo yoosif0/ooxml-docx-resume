@@ -1,0 +1,8 @@
+.envrc
+.env
+dest/word/document.xml
+dest/word/header.xml
+dest/word/header2.xml
+*.docx
+test
+node_modules
