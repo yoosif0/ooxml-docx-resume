@@ -4,7 +4,9 @@ gen:
 	node src/gen.mjs
 
 zip:
-	node src/gen.mjs && cd dest && zip -r ../zz.docx ./*  && open ../zz.docx
+	node src/gen.mjs && cd dest && \
+	zip -r ../zz.docx ./*  && \
+	nohup lowriter ../zz.docx >/dev/null 2>&1 &
 
 unzip:
 	rm -rf test && unzip zz.docx -d test
