@@ -2,7 +2,6 @@
   "name": "xml-lit",
   "version": "1.0.0",
   "devDependencies": {
-    "dotenv": "^16.4.5",
     "js-yaml": "^4.1.0",
     "vitest": "^2.0.5"
   },
