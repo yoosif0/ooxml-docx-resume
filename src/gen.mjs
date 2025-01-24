@@ -29,7 +29,6 @@ async function gen() {
 	s += space;
 	s += sectionHead("SUMMARY/ HIGHLIGHTS OF QUALIFICATIONS");
 	for (const item of dict["second"]) {
-		console.log("second item", item);
 		s += bulletPointPartialBold("", item);
 	}
 	s += space;
@@ -45,7 +44,6 @@ async function gen() {
 	for (const k of Object.keys(workObj)) {
 		const y = workObj[k];
 		const date = y["d"][0] + "- " + y["d"][1];
-		console.log(y);
 		s += withRight({ left: y["role"], right: date });
 		// company details
 		// company name
@@ -113,5 +111,10 @@ async function gen() {
 }
 
 (async function() {
-	await gen();
+	try {
+		await gen();
+		console.log("Done");
+	} catch (e) {
+		console.log(e);
+	}
 })();
