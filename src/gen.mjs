@@ -6,9 +6,16 @@ import { space } from "./xml/space.mjs";
 import { document } from "./xml/document.mjs";
 import { load } from "js-yaml";
 import { bulletPointPartialBold } from "./xml/bulletpoint.mjs";
-import { handleCategory } from "./skills.mjs";
 import { withRight } from "./xml/withRight.mjs";
 import { WithRightPartialBold } from "./xml/withRightPartialBold.mjs";
+
+const handleSkillCategory = (skills) => {
+	let s = "";
+	for (const skill of skills) {
+		s += `${skill}, `;
+	}
+	return s.substring(0, s.length - 2);
+};
 
 async function gen() {
 	const src = "../my_resume.yaml";
@@ -34,9 +41,9 @@ async function gen() {
 	s += space;
 	s += sectionHead("TECHNICAL SKILLS");
 	const skillsObj = dict["skills"];
-	for (const k of Object.keys(skillsObj)) {
-		const categorySkills = handleCategory(skillsObj[k]);
-		s += bulletPointPartialBold(k, ": " + categorySkills);
+	for (const level of Object.keys(skillsObj)) {
+		const categorySkills = handleSkillCategory(skillsObj[level]);
+		s += bulletPointPartialBold(level, ": " + categorySkills);
 	}
 	s += space;
 	s += sectionHead("PROFESSIONAL EXPERIENCE");
@@ -111,10 +118,6 @@ async function gen() {
 }
 
 (async function() {
-	try {
-		await gen();
-		console.log("Done");
-	} catch (e) {
-		console.log(e);
-	}
+	await gen();
+	console.log("Done");
 })();
